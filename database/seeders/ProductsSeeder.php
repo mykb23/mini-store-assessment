@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Products;
+use App\Models\Product;
 
 class ProductsSeeder extends Seeder
 {
@@ -14,8 +14,6 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        // factory(App\Article::class, 30)->create();
-        // factory(App\Products::class, 30)->create();
-        Products::factory()->times(30)->create();
+        Product::factory()->times(30)->create();
     }
 }

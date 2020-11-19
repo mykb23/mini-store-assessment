@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\products;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -14,7 +14,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::paginate(15);
+        return view('index', ['allProducts' => $products]);
     }
 
     /**
@@ -35,7 +36,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -81,5 +82,13 @@ class ProductsController extends Controller
     public function destroy(products $products)
     {
         //
+    }
+
+    public function storeDetails(Request $request)
+    {
+        
+        $message = $request->input('name') . " Thank You for your purchase";
+        \Cart::clear();
+        return redirect()->route('product.index')->with(['message' => $message]);
     }
 }
